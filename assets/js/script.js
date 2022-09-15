@@ -78,13 +78,10 @@ function generatePassword() {
 
   var generatedPassword =[];
 
-  for (var i =0; i < allCharSets.length;i++) {
+  for (var i =0; i < constraints[4];i++) {
     generatedPassword[i] = allCharSets[(Math.floor(Math.random() * allCharSets.length+1))];
   }
 
- 
-  //.join(",")
-  //.toString()
   return generatedPassword.join('');
 }
 
@@ -94,7 +91,8 @@ function generatePassword() {
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword(includeLc, includeUc, includeNum, includeSc) {
+//includeLc, includeUc, includeNum, includeSc
+function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
