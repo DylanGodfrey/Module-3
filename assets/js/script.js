@@ -22,35 +22,31 @@ function promptConstraints() {
   let includeNum = "";
   let includeSc = "";
   do {
-    //includeLc
     includeLc = "";
     while (!isBoolean(includeLc))
     {
       includeLc = prompt("include lower case?: ");
     }
 
-    //uc
     includeUc = "";
     while (!isBoolean(includeUc))
     {
       includeUc = prompt("include upper case?: ");
     }
 
-    //num
     includeNum = "";
     while (!isBoolean(includeNum))
     {
       includeNum = prompt("include numbers?: ");
     }
 
-    //sc
     includeSc = "";
     while (!isBoolean(includeSc))
     {
       includeSc = prompt("include special characters?: ");
     }
   } while (includeLc == "false" && includeUc == "false" && includeNum == "false" && includeSc == "false" ); //checks to see if after running once, if at least one character set was selected
-  var includes = [includeLc, includeUc, includeNum, includeSc];
+  var includes = [includeLc, includeUc, includeNum, includeSc, passwordLength];
   return (includes);
 }
 
@@ -79,15 +75,17 @@ function generatePassword() {
     
     console.log("Lowercase removed: "+ allCharSets)
   }
-  var generatedPassword = allCharSets;
 
+  var generatedPassword =[];
 
-  /*
-  remove from range if () 
-  includeLc == "false" && includeUc == "false" && includeNum == "false" && includeSc == "false"
-  */
+  for (var i =0; i < allCharSets.length;i++) {
+    generatedPassword[i] = allCharSets[(Math.floor(Math.random() * allCharSets.length+1))];
+  }
 
-  return generatedPassword;
+ 
+  //.join(",")
+  //.toString()
+  return generatedPassword.join('');
 }
 
 
