@@ -78,14 +78,13 @@ function generatePassword() {
   var specialCharSet = "~!@#$%^&*?/.";
 
   var filteredConstraints = [];
-  var accountedFor = [];
 
 
+  //Filters the array for only the user-selected char sets
   var j = 0;
   for (var i =0; i < constraints.length-1;i++) {
     if (constraints[i] == "true") {
       filteredConstraints[j] = i; // [j] = 0 to 4 if true
-      accountedFor[j] = false;
       j++;
     }
   }
@@ -95,16 +94,13 @@ function generatePassword() {
   
   var generatedPassword =[];
   var selectedIndex, selectedElement;
-  //First pass of generating the password
-  // wrap in do while until all needed types are accountedFor[]?
-  for (var i =0; i < constraints[4];i++) {
-    //                     = [random valid charset][random value in that valid charset]
-    //filteredConstraints[(Math.floor(Math.random() * filteredConstraints))]
 
-    selectedIndex = (Math.floor(Math.random() * filteredConstraints.length)); // randIndex chooses which array to pull from 
-    accountedFor[selectedIndex] = true;
+  //Generating the password
+  for (var i =0; i < constraints[4];i++) { //Select a random valid charset and character and assign it to 'generatedPassword' for each character included
+
+    selectedIndex = (Math.floor(Math.random() * filteredConstraints.length)); // selectedIndex chooses which valid array to pull from 
     
-    selectedElement = (Math.floor(Math.random() * allCharSets[filteredConstraints[selectedIndex]+1].length)); // randItem chooses an element inside the randomIndex's index
+    selectedElement = (Math.floor(Math.random() * allCharSets[filteredConstraints[selectedIndex]+1].length)); // selectedElement chooses an element inside the selectedIndex's index
 
     generatedPassword[i] = allCharSets[filteredConstraints[selectedIndex]+1]
     [selectedElement];
